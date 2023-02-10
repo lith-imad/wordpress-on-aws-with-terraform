@@ -54,24 +54,11 @@ resource "aws_security_group" "lb_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
-resource "aws_security_group" "aurora_sg" {
-  name        = "rds_aurora_sg"
-  description = "Open MySQL port 3306 for EC2 instances"
-  vpc_id      = aws_vpc.wordpress_vpc.id
-
   ingress {
-    from_port       = var.db_port
-    to_port         = var.db_port
-    protocol        = "tcp"
-    security_groups = [aws_security_group.wordpress_sg.id]
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
@@ -91,7 +78,7 @@ resource "aws_security_group" "efs_sg" {
     from_port       = 2049
     to_port         = 2049
     protocol        = "tcp"
-    security_groups = [aws_security_group.wordpress_sg.id]
+    security_groups = [aws_security_group.wordpress_sg.id, aws_security_group.bastion-sg.id]
   }
 
   egress {

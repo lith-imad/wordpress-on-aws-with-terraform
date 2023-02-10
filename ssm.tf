@@ -30,6 +30,7 @@ resource "aws_ssm_parameter" "db_username" {
 }
 
 output "username" {
+  sensitive = true
   value = aws_ssm_parameter.db_username.value
 }
 

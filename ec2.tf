@@ -15,10 +15,10 @@ data "aws_ami" "amzn_linux_2" {
 
 locals {
   credentials = {
-    db_name        = aws_ssm_parameter.db_name.value
-    db_username    = aws_ssm_parameter.db_username.value
-    db_password    = aws_ssm_parameter.db_password.value
-    db_host        = aws_rds_cluster.wordpress_db_cluster.endpoint
+    db_name        = var.db_name
+    db_username    = var.db_username
+    db_password    = var.db_password
+    db_host        = var.db_host
     wp_title       = aws_ssm_parameter.wp_title.value
     wp_username    = aws_ssm_parameter.wp_username.value
     wp_password    = aws_ssm_parameter.wp_password.value
@@ -86,7 +86,7 @@ resource "aws_launch_template" "wordpress_lt" {
 
 resource "aws_autoscaling_group" "wordpress_asg" {
   name             = "wordpress-asg"
-  desired_capacity = var.ec2_bastion_asg_desired_capacity
+  desired_capacity = var.ec2_wordpress_asg_desired_capacity
   min_size         = var.ec2_wordpress_asg_min_capacity
   max_size         = var.ec2_wordpress_asg_max_capacity
 

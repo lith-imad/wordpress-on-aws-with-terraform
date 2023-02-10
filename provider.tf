@@ -14,7 +14,7 @@ terraform {
 provider "aws" {
   region                  = var.region
   shared_credentials_file = "~/.aws/cred"
-  profile                 = "sandbox"
+  profile                 = "default"
 }
 
 provider "random" {

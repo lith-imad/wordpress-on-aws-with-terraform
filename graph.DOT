@@ -1,0 +1,205 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_autoscaling_group.bastion_asg (expand)" [label = "aws_autoscaling_group.bastion_asg", shape = "box"]
+		"[root] aws_autoscaling_group.wordpress_asg (expand)" [label = "aws_autoscaling_group.wordpress_asg", shape = "box"]
+		"[root] aws_efs_file_system.wordpress_fs (expand)" [label = "aws_efs_file_system.wordpress_fs", shape = "box"]
+		"[root] aws_efs_mount_target.wordpress_mount_targets (expand)" [label = "aws_efs_mount_target.wordpress_mount_targets", shape = "box"]
+		"[root] aws_eip.eip (expand)" [label = "aws_eip.eip", shape = "box"]
+		"[root] aws_elasticache_cluster.memcached_cluster (expand)" [label = "aws_elasticache_cluster.memcached_cluster", shape = "box"]
+		"[root] aws_elasticache_subnet_group.memcached_subnet_group (expand)" [label = "aws_elasticache_subnet_group.memcached_subnet_group", shape = "box"]
+		"[root] aws_iam_instance_profile.parameter_store_profile (expand)" [label = "aws_iam_instance_profile.parameter_store_profile", shape = "box"]
+		"[root] aws_iam_policy.parameter_store_policy (expand)" [label = "aws_iam_policy.parameter_store_policy", shape = "box"]
+		"[root] aws_iam_policy_attachment.parameter-store-attach (expand)" [label = "aws_iam_policy_attachment.parameter-store-attach", shape = "box"]
+		"[root] aws_iam_role.parameter_store_role (expand)" [label = "aws_iam_role.parameter_store_role", shape = "box"]
+		"[root] aws_internet_gateway.gw (expand)" [label = "aws_internet_gateway.gw", shape = "box"]
+		"[root] aws_key_pair.public_key (expand)" [label = "aws_key_pair.public_key", shape = "box"]
+		"[root] aws_launch_template.bastion_lt (expand)" [label = "aws_launch_template.bastion_lt", shape = "box"]
+		"[root] aws_launch_template.wordpress_lt (expand)" [label = "aws_launch_template.wordpress_lt", shape = "box"]
+		"[root] aws_lb.wordpress_lb (expand)" [label = "aws_lb.wordpress_lb", shape = "box"]
+		"[root] aws_lb_listener.http_listner (expand)" [label = "aws_lb_listener.http_listner", shape = "box"]
+		"[root] aws_lb_target_group.wordpress_tg (expand)" [label = "aws_lb_target_group.wordpress_tg", shape = "box"]
+		"[root] aws_nat_gateway.nat (expand)" [label = "aws_nat_gateway.nat", shape = "box"]
+		"[root] aws_route_table.private_rt (expand)" [label = "aws_route_table.private_rt", shape = "box"]
+		"[root] aws_route_table.public_rt (expand)" [label = "aws_route_table.public_rt", shape = "box"]
+		"[root] aws_route_table_association.private-rt-as (expand)" [label = "aws_route_table_association.private-rt-as", shape = "box"]
+		"[root] aws_route_table_association.public-rt-as (expand)" [label = "aws_route_table_association.public-rt-as", shape = "box"]
+		"[root] aws_security_group.bastion-sg (expand)" [label = "aws_security_group.bastion-sg", shape = "box"]
+		"[root] aws_security_group.efs_sg (expand)" [label = "aws_security_group.efs_sg", shape = "box"]
+		"[root] aws_security_group.lb_sg (expand)" [label = "aws_security_group.lb_sg", shape = "box"]
+		"[root] aws_security_group.memcached_sg (expand)" [label = "aws_security_group.memcached_sg", shape = "box"]
+		"[root] aws_security_group.wordpress_sg (expand)" [label = "aws_security_group.wordpress_sg", shape = "box"]
+		"[root] aws_ssm_parameter.db_name (expand)" [label = "aws_ssm_parameter.db_name", shape = "box"]
+		"[root] aws_ssm_parameter.db_password (expand)" [label = "aws_ssm_parameter.db_password", shape = "box"]
+		"[root] aws_ssm_parameter.db_username (expand)" [label = "aws_ssm_parameter.db_username", shape = "box"]
+		"[root] aws_ssm_parameter.site_url (expand)" [label = "aws_ssm_parameter.site_url", shape = "box"]
+		"[root] aws_ssm_parameter.wp_email (expand)" [label = "aws_ssm_parameter.wp_email", shape = "box"]
+		"[root] aws_ssm_parameter.wp_password (expand)" [label = "aws_ssm_parameter.wp_password", shape = "box"]
+		"[root] aws_ssm_parameter.wp_title (expand)" [label = "aws_ssm_parameter.wp_title", shape = "box"]
+		"[root] aws_ssm_parameter.wp_username (expand)" [label = "aws_ssm_parameter.wp_username", shape = "box"]
+		"[root] aws_subnet.private_subnets (expand)" [label = "aws_subnet.private_subnets", shape = "box"]
+		"[root] aws_subnet.public_subnets (expand)" [label = "aws_subnet.public_subnets", shape = "box"]
+		"[root] aws_vpc.wordpress_vpc (expand)" [label = "aws_vpc.wordpress_vpc", shape = "box"]
+		"[root] data.aws_ami.amzn_linux_2 (expand)" [label = "data.aws_ami.amzn_linux_2", shape = "box"]
+		"[root] data.aws_availability_zones.azs (expand)" [label = "data.aws_availability_zones.azs", shape = "box"]
+		"[root] data.aws_iam_policy_document.instance-assume-role-policy (expand)" [label = "data.aws_iam_policy_document.instance-assume-role-policy", shape = "box"]
+		"[root] data.aws_iam_policy_document.parameter-store-document (expand)" [label = "data.aws_iam_policy_document.parameter-store-document", shape = "box"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"]" [label = "provider[\"registry.terraform.io/hashicorp/random\"]", shape = "diamond"]
+		"[root] random_password.password (expand)" [label = "random_password.password", shape = "box"]
+		"[root] random_string.username (expand)" [label = "random_string.username", shape = "box"]
+		"[root] var.db_host" [label = "var.db_host", shape = "note"]
+		"[root] var.db_name" [label = "var.db_name", shape = "note"]
+		"[root] var.db_password" [label = "var.db_password", shape = "note"]
+		"[root] var.db_port" [label = "var.db_port", shape = "note"]
+		"[root] var.db_username" [label = "var.db_username", shape = "note"]
+		"[root] var.ec2_bastion_asg_desired_capacity" [label = "var.ec2_bastion_asg_desired_capacity", shape = "note"]
+		"[root] var.ec2_bastion_asg_max_capacity" [label = "var.ec2_bastion_asg_max_capacity", shape = "note"]
+		"[root] var.ec2_bastion_asg_min_capacity" [label = "var.ec2_bastion_asg_min_capacity", shape = "note"]
+		"[root] var.ec2_instance_type" [label = "var.ec2_instance_type", shape = "note"]
+		"[root] var.ec2_public_key_name" [label = "var.ec2_public_key_name", shape = "note"]
+		"[root] var.ec2_public_key_path" [label = "var.ec2_public_key_path", shape = "note"]
+		"[root] var.ec2_sg_ingress_ports" [label = "var.ec2_sg_ingress_ports", shape = "note"]
+		"[root] var.ec2_wordpress_asg_desired_capacity" [label = "var.ec2_wordpress_asg_desired_capacity", shape = "note"]
+		"[root] var.ec2_wordpress_asg_max_capacity" [label = "var.ec2_wordpress_asg_max_capacity", shape = "note"]
+		"[root] var.ec2_wordpress_asg_min_capacity" [label = "var.ec2_wordpress_asg_min_capacity", shape = "note"]
+		"[root] var.ec_az_mode" [label = "var.ec_az_mode", shape = "note"]
+		"[root] var.ec_memcached_port" [label = "var.ec_memcached_port", shape = "note"]
+		"[root] var.ec_node_type" [label = "var.ec_node_type", shape = "note"]
+		"[root] var.ec_nodes_count" [label = "var.ec_nodes_count", shape = "note"]
+		"[root] var.env" [label = "var.env", shape = "note"]
+		"[root] var.region" [label = "var.region", shape = "note"]
+		"[root] var.subnets_cidr_blocks" [label = "var.subnets_cidr_blocks", shape = "note"]
+		"[root] var.wp_admin_email" [label = "var.wp_admin_email", shape = "note"]
+		"[root] aws_autoscaling_group.bastion_asg (expand)" -> "[root] aws_launch_template.bastion_lt (expand)"
+		"[root] aws_autoscaling_group.bastion_asg (expand)" -> "[root] aws_subnet.public_subnets (expand)"
+		"[root] aws_autoscaling_group.bastion_asg (expand)" -> "[root] var.ec2_bastion_asg_desired_capacity"
+		"[root] aws_autoscaling_group.bastion_asg (expand)" -> "[root] var.ec2_bastion_asg_max_capacity"
+		"[root] aws_autoscaling_group.bastion_asg (expand)" -> "[root] var.ec2_bastion_asg_min_capacity"
+		"[root] aws_autoscaling_group.wordpress_asg (expand)" -> "[root] aws_launch_template.wordpress_lt (expand)"
+		"[root] aws_autoscaling_group.wordpress_asg (expand)" -> "[root] aws_lb_target_group.wordpress_tg (expand)"
+		"[root] aws_autoscaling_group.wordpress_asg (expand)" -> "[root] aws_subnet.private_subnets (expand)"
+		"[root] aws_autoscaling_group.wordpress_asg (expand)" -> "[root] var.ec2_wordpress_asg_desired_capacity"
+		"[root] aws_autoscaling_group.wordpress_asg (expand)" -> "[root] var.ec2_wordpress_asg_max_capacity"
+		"[root] aws_autoscaling_group.wordpress_asg (expand)" -> "[root] var.ec2_wordpress_asg_min_capacity"
+		"[root] aws_efs_file_system.wordpress_fs (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_efs_mount_target.wordpress_mount_targets (expand)" -> "[root] aws_efs_file_system.wordpress_fs (expand)"
+		"[root] aws_efs_mount_target.wordpress_mount_targets (expand)" -> "[root] aws_security_group.efs_sg (expand)"
+		"[root] aws_efs_mount_target.wordpress_mount_targets (expand)" -> "[root] aws_subnet.private_subnets (expand)"
+		"[root] aws_eip.eip (expand)" -> "[root] aws_internet_gateway.gw (expand)"
+		"[root] aws_elasticache_cluster.memcached_cluster (expand)" -> "[root] aws_elasticache_subnet_group.memcached_subnet_group (expand)"
+		"[root] aws_elasticache_cluster.memcached_cluster (expand)" -> "[root] aws_security_group.memcached_sg (expand)"
+		"[root] aws_elasticache_cluster.memcached_cluster (expand)" -> "[root] var.ec_az_mode"
+		"[root] aws_elasticache_cluster.memcached_cluster (expand)" -> "[root] var.ec_node_type"
+		"[root] aws_elasticache_cluster.memcached_cluster (expand)" -> "[root] var.ec_nodes_count"
+		"[root] aws_elasticache_subnet_group.memcached_subnet_group (expand)" -> "[root] aws_subnet.private_subnets (expand)"
+		"[root] aws_iam_instance_profile.parameter_store_profile (expand)" -> "[root] aws_iam_role.parameter_store_role (expand)"
+		"[root] aws_iam_policy.parameter_store_policy (expand)" -> "[root] data.aws_iam_policy_document.parameter-store-document (expand)"
+		"[root] aws_iam_policy_attachment.parameter-store-attach (expand)" -> "[root] aws_iam_policy.parameter_store_policy (expand)"
+		"[root] aws_iam_policy_attachment.parameter-store-attach (expand)" -> "[root] aws_iam_role.parameter_store_role (expand)"
+		"[root] aws_iam_role.parameter_store_role (expand)" -> "[root] data.aws_iam_policy_document.instance-assume-role-policy (expand)"
+		"[root] aws_internet_gateway.gw (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_key_pair.public_key (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_key_pair.public_key (expand)" -> "[root] var.ec2_public_key_name"
+		"[root] aws_key_pair.public_key (expand)" -> "[root] var.ec2_public_key_path"
+		"[root] aws_launch_template.bastion_lt (expand)" -> "[root] aws_security_group.bastion-sg (expand)"
+		"[root] aws_launch_template.bastion_lt (expand)" -> "[root] data.aws_ami.amzn_linux_2 (expand)"
+		"[root] aws_launch_template.bastion_lt (expand)" -> "[root] var.ec2_instance_type"
+		"[root] aws_launch_template.bastion_lt (expand)" -> "[root] var.ec2_public_key_name"
+		"[root] aws_launch_template.wordpress_lt (expand)" -> "[root] aws_iam_instance_profile.parameter_store_profile (expand)"
+		"[root] aws_launch_template.wordpress_lt (expand)" -> "[root] aws_security_group.wordpress_sg (expand)"
+		"[root] aws_launch_template.wordpress_lt (expand)" -> "[root] data.aws_ami.amzn_linux_2 (expand)"
+		"[root] aws_launch_template.wordpress_lt (expand)" -> "[root] local.credentials (expand)"
+		"[root] aws_launch_template.wordpress_lt (expand)" -> "[root] var.ec2_instance_type"
+		"[root] aws_launch_template.wordpress_lt (expand)" -> "[root] var.ec2_public_key_name"
+		"[root] aws_lb.wordpress_lb (expand)" -> "[root] aws_security_group.lb_sg (expand)"
+		"[root] aws_lb.wordpress_lb (expand)" -> "[root] aws_subnet.public_subnets (expand)"
+		"[root] aws_lb_listener.http_listner (expand)" -> "[root] aws_lb.wordpress_lb (expand)"
+		"[root] aws_lb_listener.http_listner (expand)" -> "[root] aws_lb_target_group.wordpress_tg (expand)"
+		"[root] aws_lb_target_group.wordpress_tg (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_nat_gateway.nat (expand)" -> "[root] aws_eip.eip (expand)"
+		"[root] aws_nat_gateway.nat (expand)" -> "[root] aws_subnet.public_subnets (expand)"
+		"[root] aws_route_table.private_rt (expand)" -> "[root] aws_nat_gateway.nat (expand)"
+		"[root] aws_route_table.public_rt (expand)" -> "[root] aws_internet_gateway.gw (expand)"
+		"[root] aws_route_table_association.private-rt-as (expand)" -> "[root] aws_route_table.private_rt (expand)"
+		"[root] aws_route_table_association.private-rt-as (expand)" -> "[root] aws_subnet.private_subnets (expand)"
+		"[root] aws_route_table_association.public-rt-as (expand)" -> "[root] aws_route_table.public_rt (expand)"
+		"[root] aws_route_table_association.public-rt-as (expand)" -> "[root] aws_subnet.public_subnets (expand)"
+		"[root] aws_security_group.bastion-sg (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_security_group.efs_sg (expand)" -> "[root] aws_security_group.wordpress_sg (expand)"
+		"[root] aws_security_group.lb_sg (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_security_group.memcached_sg (expand)" -> "[root] aws_security_group.wordpress_sg (expand)"
+		"[root] aws_security_group.memcached_sg (expand)" -> "[root] var.ec_memcached_port"
+		"[root] aws_security_group.wordpress_sg (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_security_group.wordpress_sg (expand)" -> "[root] var.ec2_sg_ingress_ports"
+		"[root] aws_ssm_parameter.db_name (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_ssm_parameter.db_name (expand)" -> "[root] var.env"
+		"[root] aws_ssm_parameter.db_password (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_ssm_parameter.db_password (expand)" -> "[root] random_password.password (expand)"
+		"[root] aws_ssm_parameter.db_password (expand)" -> "[root] var.env"
+		"[root] aws_ssm_parameter.db_username (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_ssm_parameter.db_username (expand)" -> "[root] random_string.username (expand)"
+		"[root] aws_ssm_parameter.db_username (expand)" -> "[root] var.env"
+		"[root] aws_ssm_parameter.site_url (expand)" -> "[root] aws_lb.wordpress_lb (expand)"
+		"[root] aws_ssm_parameter.wp_email (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_ssm_parameter.wp_email (expand)" -> "[root] var.env"
+		"[root] aws_ssm_parameter.wp_email (expand)" -> "[root] var.wp_admin_email"
+		"[root] aws_ssm_parameter.wp_password (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_ssm_parameter.wp_password (expand)" -> "[root] random_password.password (expand)"
+		"[root] aws_ssm_parameter.wp_password (expand)" -> "[root] var.env"
+		"[root] aws_ssm_parameter.wp_title (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_ssm_parameter.wp_title (expand)" -> "[root] var.env"
+		"[root] aws_ssm_parameter.wp_username (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_ssm_parameter.wp_username (expand)" -> "[root] random_string.username (expand)"
+		"[root] aws_ssm_parameter.wp_username (expand)" -> "[root] var.env"
+		"[root] aws_subnet.private_subnets (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_subnet.private_subnets (expand)" -> "[root] local.azs (expand)"
+		"[root] aws_subnet.private_subnets (expand)" -> "[root] var.subnets_cidr_blocks"
+		"[root] aws_subnet.public_subnets (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_subnet.public_subnets (expand)" -> "[root] local.azs (expand)"
+		"[root] aws_subnet.public_subnets (expand)" -> "[root] var.subnets_cidr_blocks"
+		"[root] aws_vpc.wordpress_vpc (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_vpc.wordpress_vpc (expand)" -> "[root] var.env"
+		"[root] data.aws_ami.amzn_linux_2 (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] data.aws_availability_zones.azs (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] data.aws_iam_policy_document.instance-assume-role-policy (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] data.aws_iam_policy_document.parameter-store-document (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] local.azs (expand)" -> "[root] data.aws_availability_zones.azs (expand)"
+		"[root] local.credentials (expand)" -> "[root] aws_efs_file_system.wordpress_fs (expand)"
+		"[root] local.credentials (expand)" -> "[root] aws_ssm_parameter.site_url (expand)"
+		"[root] local.credentials (expand)" -> "[root] aws_ssm_parameter.wp_email (expand)"
+		"[root] local.credentials (expand)" -> "[root] aws_ssm_parameter.wp_password (expand)"
+		"[root] local.credentials (expand)" -> "[root] aws_ssm_parameter.wp_title (expand)"
+		"[root] local.credentials (expand)" -> "[root] aws_ssm_parameter.wp_username (expand)"
+		"[root] local.credentials (expand)" -> "[root] var.db_host"
+		"[root] local.credentials (expand)" -> "[root] var.db_name"
+		"[root] local.credentials (expand)" -> "[root] var.db_password"
+		"[root] local.credentials (expand)" -> "[root] var.db_username"
+		"[root] output.lb_dns_name (expand)" -> "[root] aws_lb.wordpress_lb (expand)"
+		"[root] output.username (expand)" -> "[root] aws_ssm_parameter.db_username (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_autoscaling_group.bastion_asg (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_autoscaling_group.wordpress_asg (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_efs_mount_target.wordpress_mount_targets (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_elasticache_cluster.memcached_cluster (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_iam_policy_attachment.parameter-store-attach (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_key_pair.public_key (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_lb_listener.http_listner (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route_table_association.private-rt-as (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route_table_association.public-rt-as (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_ssm_parameter.db_name (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_ssm_parameter.db_password (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_ssm_parameter.db_username (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" -> "[root] var.region"
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] random_password.password (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] random_string.username (expand)"
+		"[root] random_password.password (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+		"[root] random_string.username (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+		"[root] root" -> "[root] output.lb_dns_name (expand)"
+		"[root] root" -> "[root] output.username (expand)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)"
+		"[root] root" -> "[root] var.db_port"
+	}
+}
+

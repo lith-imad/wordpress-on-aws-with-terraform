@@ -28,20 +28,15 @@ function mountEFS {
 function configuringNginx {
     echo "Configuring Nginx ........"
 
-    github_raw_url='https://raw.githubusercontent.com/MohamedHajr/wordpress-on-aws-with-terraform/master/configurations'
+    github_raw_url='https://raw.githubusercontent.com/lith-imad/wordpress-on-aws-with-terraform/master/configurations'
     curl "$github_raw_url/wordpress.conf" -o /etc/nginx/conf.d/wordpress.conf
     curl "$github_raw_url/nginx.conf" > /etc/nginx/nginx.conf
     sed -i '/;cgi.fix_pathinfo=1/c\cgi.fix_pathinfo=0' /etc/php.ini
-    #sed -i '/user = apache/c\user = apache, nginx' /etc/php-fpm.d/www.conf
+    sed -i '/user = apache/c\user = apache, nginx' /etc/php-fpm.d/www.conf
 }
 
 function installWordpress {
     cd $wordpress_dir
-
-    echo "Downloading WP-CLI...."
-    curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-    chmod +x wp-cli.phar
-    mv wp-cli.phar /usr/local/bin/wp
 
     echo "Downloading Wordpress...."
     wp core download 
@@ -49,6 +44,9 @@ function installWordpress {
     #create wp-config.php
     echo "Generating wp-config.php...."
     wp config create --dbname=${db_name} --dbuser=${db_username} --dbpass=${db_password} --dbhost=${db_host}
+
+    # echo "replacing old url.. "
+    # wp search-replace 'https://nzoi.com' 'https://trr.nzoi.com' wp_postmeta --skip-columns=guid
 
     echo "Installing Wordpress...."
     wp core install --url=${site_url} --title="${wp_title}" --admin_user=${wp_username} --admin_password=${wp_password} --admin_email=${wp_email}
@@ -66,9 +64,17 @@ configuringNginx
 #Spining everything
 systemctl enable --now nginx php-fpm 
 
-if [ -n "$(ls -A $wordpress_dir 2>/dev/null)" ]
-then
+
+cd $wordpress_dir
+echo "Downloading WP-CLI...."
+curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+chmod +x wp-cli.phar
+mv wp-cli.phar /usr/local/bin/wp
+
+if ! wp core is-installed; then
     echo "Wordpress Already installed on the EFS file system"
 else
-    installWordpress 
+    installWordpress
+    chown -R nginx:nginx $wordpress_dir
+    chmod u+wrx $wordpress_dir/wp-contnet/*
 fi

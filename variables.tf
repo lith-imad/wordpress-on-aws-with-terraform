@@ -10,7 +10,7 @@ variable "env" {
 variable "region" {
   type        = string
   description = "AWS Region to use"
-  default     = "us-east-1"
+  default     = "eu-west-1"
 }
 
 variable "wp_admin_email" {
@@ -70,38 +70,38 @@ variable "ec2_wordpress_asg_max_capacity" {
   description = "the maximum capacity to scale out to, for the wordpress instacnes in the auto scaling group"
 }
 
+variable "certificate_arn" {
+  type = string
+  description = "load balancer certificate arn"
+}
+
 #####################
 ## RDS Variables #######
 #####################
 
-variable "db_instance_type" {
+variable "db_host" {
   type        = string
-  description = "The DB instance class type db.t2.micro, db.m5.larage, etc.."
+  description = "The existing database host"
 }
 
-variable "db_storage_capacity" {
-  type        = number
-  description = "Allocated storage capacity for the RDS instance"
+variable "db_username" {
+  type        = string
+  description = "The existing database username"
 }
 
-variable "db_storage_type" {
+variable "db_password" {
   type        = string
-  description = "The Strorage type of the DB instance gp2, io1 , etc..."
-}
-
-variable "db_engine" {
-  type        = string
-  description = "The type of engine to run on the DB instance aurora, mysql, postgresql, etc.."
-}
-
-variable "db_engine_version" {
-  type        = string
-  description = "The version of the engine running on the DB instance"
+  description = "The existing database password"
 }
 
 variable "db_port" {
   type        = number
-  description = "The port that the DB engine listening on"
+  description = "The existing database port"
+}
+
+variable "db_name" {
+  type  = string
+  description = "the existing db name"
 }
 
 ############################

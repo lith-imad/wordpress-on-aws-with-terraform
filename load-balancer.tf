@@ -22,13 +22,14 @@ resource "aws_lb_target_group" "wordpress_tg" {
   vpc_id   = aws_vpc.wordpress_vpc.id
 
   health_check {
+    enabled             = true
     interval            = 30
     path                = "/"
     protocol            = "HTTP"
     timeout             = 5
     healthy_threshold   = 5
     unhealthy_threshold = 3
-    matcher             = "200"
+    matcher             = "200-499"
   }
 }
 
@@ -43,3 +44,14 @@ resource "aws_lb_listener" "http_listner" {
   }
 }
 
+resource "aws_lb_listener" "https_listner" {
+  load_balancer_arn = aws_lb.wordpress_lb.arn
+  port              = "443"
+  protocol          = "HTTPS"
+  certificate_arn = var.certificate_arn
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.wordpress_tg.arn
+  }
+}
